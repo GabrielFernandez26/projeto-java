@@ -38,7 +38,7 @@ public class Menu {
 			switch (opcao) {
 			case 1:
 				System.out.println("Exibir Carrinho\n\n");
-
+			
 				break;
 			case 2:
 				System.out.println("Adicionar no carrinho\n\n");
