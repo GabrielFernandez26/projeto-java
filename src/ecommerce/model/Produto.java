@@ -76,12 +76,12 @@ public class Produto {
     }
 
 	public double calcularSubtotal() {
-		return preco * qtd;
+		return getPreco() * qtd;
 	}
 
 	@Override
 	public String toString() {
-		return "Produto [id=" + id + ", nome=" + nome + ", preco=" + preco + "]";
+		return "Produto: " + nome + " | Preco: $" + String.format("%.2f", preco);
 	}
 
 }

@@ -38,15 +38,13 @@ public class Carrinho implements ICarrinhoRepository{
 	}
 
 	@Override
-	public Double calcularTotal() {
+	public Double calcularTotal(List<Produto> produtos) {
 		double total = 0;
-
-        for (Produto produto : produtos) {
-            total += produto.calcularSubtotal();
+        for (Produto p : produtos) {
+            total += p.calcularSubtotal();
         }
 
         return total;
 	}
-	
 	
 }

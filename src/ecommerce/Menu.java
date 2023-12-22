@@ -80,9 +80,13 @@ public class Menu {
 			case 3:
 				System.out.println("Finalizar compra");
 			    if (c != null) {
-			        double totalCompra = c.calcularTotal();
-			        System.out.println("Total da compra: R$" + totalCompra);
-			        System.out.println("Compra finalizada. Carrinho resetado.");
+			        double totalCompra = c.calcularTotal(listaProdutos);
+			        for (Produto produto : listaProdutos) {
+						System.out.println(produto.toString()); 
+					}
+			        System.out.printf("Total da compra: R$ %.2f", totalCompra);
+			        System.out.println();
+			       
 			    } else {
 			        System.out.println("Carrinho de compras não inicializado. Nada a finalizar.");
 			    }
