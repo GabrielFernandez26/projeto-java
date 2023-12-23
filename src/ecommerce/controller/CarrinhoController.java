@@ -1,34 +1,44 @@
-package ecommerce.model;
+package ecommerce.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ecommerce.model.Produto;
+import ecommerce.model.Roupa;
+import ecommerce.model.Tenis;
 import ecommerce.repository.ICarrinhoRepository;
 
-public class Carrinho implements ICarrinhoRepository{
-	
-	List<Produto> produtos = new ArrayList<>();
-	
+public class CarrinhoController implements ICarrinhoRepository{
+
+	List<Produto> carrinho = new ArrayList<>();
 	@Override
 	public void adicionarProduto(Produto produto, Integer qtd) {
-		for (Produto p : produtos) {
+		for (Produto p : carrinho) {
 			 if (p.equals(produto)) {
 	                p.aumentarQtd(qtd);
 	                return; 
 	            }
         }
 
-        Produto novoProduto = new Produto(produto.getNome(), produto.getQtd());
+        Produto novoProduto;
+        if (produto instanceof Tenis) {
+            novoProduto = new Tenis(produto.getNome(), produto.getQtd());
+        } else if (produto instanceof Roupa) {
+            novoProduto = new Roupa(produto.getNome(), produto.getQtd());
+        } else {
+            return;
+        }
+
         novoProduto.setQtd(qtd);
-        produtos.add(novoProduto);
+       carrinho.add(novoProduto);
 	}
 
 	@Override
 	public void removerProduto(Produto produto, Integer qtd) {
-		for (Produto p : produtos) {
+		for (Produto p : carrinho) {
             if (p.equals(produto)) {
                 if (qtd >= p.getQtd()) {
-                    produtos.remove(p);
+                    carrinho.remove(p);
                 } else {
                     p.diminuirQtd(qtd);
                 }
@@ -46,5 +56,4 @@ public class Carrinho implements ICarrinhoRepository{
 
         return total;
 	}
-	
 }

@@ -1,6 +1,6 @@
 package ecommerce.model;
 
-public class Produto {
+public abstract class Produto {
 	private static int proxId = 1;
 	Integer id;
 	String nome;
@@ -81,7 +81,7 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return "Produto: " + nome + " | Preco: $" + String.format("%.2f", preco);
+		return "Produto: " + getNome() + " | Quantidade: " + getQtd() + " | Preco: $" + String.format("%.2f", getPreco());
 	}
 
 }
